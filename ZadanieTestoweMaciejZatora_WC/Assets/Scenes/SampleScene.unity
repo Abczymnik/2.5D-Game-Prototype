@@ -309,7 +309,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -330,7 +330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MemberStats>k__BackingField: {fileID: 11400000, guid: ad3a2de65a604d2408cfef70c19d9f3c, type: 2}
-  isLeader: 0
+  <IsLeader>k__BackingField: 0
+  leaderToFollow: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!1 &421519323
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +382,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MemberStats>k__BackingField: {fileID: 11400000, guid: 5c17951afe7e4f5478c63b6ffe165d75, type: 2}
-  isLeader: 0
+  <IsLeader>k__BackingField: 0
+  leaderToFollow: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!195 &421519327
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -395,7 +399,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -671,6 +675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 873914851}
+  - component: {fileID: 873914853}
   - component: {fileID: 873914852}
   m_Layer: 6
   m_Name: Characters
@@ -711,6 +716,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4105db2a6419d2340b30ef1d40303ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &873914853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873914850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb60d5bd4692b7644bc3d388855aa9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <teamMembers>k__BackingField: []
+  <currentLeader>k__BackingField: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +888,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MemberStats>k__BackingField: {fileID: 11400000, guid: 97451ee0b91f4e64181127d61986c978, type: 2}
-  isLeader: 0
+  <IsLeader>k__BackingField: 0
+  leaderToFollow: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!195 &1093164705
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -884,7 +905,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1014,7 +1035,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MemberStats>k__BackingField: {fileID: 11400000, guid: 981275c6bf5ea9843861b166ae3ebdad, type: 2}
-  isLeader: 0
+  <IsLeader>k__BackingField: 0
+  leaderToFollow: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!195 &1237415606
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1029,7 +1052,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1250,7 +1273,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MemberStats>k__BackingField: {fileID: 11400000, guid: 2afe3b4849071af46917c9864c387860, type: 2}
-  isLeader: 0
+  <IsLeader>k__BackingField: 0
+  leaderToFollow: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!195 &1845981240
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1265,7 +1290,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

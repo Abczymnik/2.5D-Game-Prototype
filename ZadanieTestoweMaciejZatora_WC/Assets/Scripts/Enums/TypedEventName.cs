@@ -1,4 +1,5 @@
 public enum TypedEventName
 {
-    SetLeaderTarget
+    SetLeaderTarget,
+    ChangeLeader
 }
