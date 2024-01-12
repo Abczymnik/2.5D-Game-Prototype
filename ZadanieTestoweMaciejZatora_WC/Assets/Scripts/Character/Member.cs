@@ -22,6 +22,8 @@ public class Member : MonoBehaviour, ISelectable
     private void Awake()
     {
         if (agent == null) agent = GetComponent<NavMeshAgent>();
+        agent.speed = MemberStats.Velocity;
+        agent.angularSpeed = MemberStats.Agility;
         SetupInitEvents();
     }
 

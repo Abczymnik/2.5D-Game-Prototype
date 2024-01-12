@@ -4,8 +4,8 @@ using UnityEngine.Events;
 
 public class Team : MonoBehaviour
 {
-    [field: SerializeField] public List<Member> teamMembers { get; private set; } = new List<Member>();
-    [field: SerializeField] public Member currentLeader { get; private set; }
+    [field: SerializeField] public List<Member> TeamMembers { get; private set; } = new List<Member>();
+    [field: SerializeField] public Member CurrentLeader { get; private set; }
 
     private UnityAction<object> onChangeLeader;
 
@@ -23,20 +23,20 @@ public class Team : MonoBehaviour
     private void AddMember(Member memberToAdd)
     {
         if (memberToAdd is null) return;
-        teamMembers.Add(memberToAdd);
+        TeamMembers.Add(memberToAdd);
     }
 
     private void DeleteMember(Member memberToDelete)
     {
         if (memberToDelete is null) return;
 
-        if (memberToDelete == currentLeader)
+        if (memberToDelete == CurrentLeader)
         {
             EventManager.TriggerEvent(UnityEventName.LeaderDeselect);
-            currentLeader = null;
+            CurrentLeader = null;
         }
 
-        if (teamMembers.Contains(memberToDelete)) teamMembers.Remove(memberToDelete);
+        if (TeamMembers.Contains(memberToDelete)) TeamMembers.Remove(memberToDelete);
     }
 
     private void MergeTeams(List<Member> teamToAdd)
@@ -60,6 +60,6 @@ public class Team : MonoBehaviour
     private void OnChangeLeader(object newLeaderData)
     {
         Member newLeader = (Member)newLeaderData;
-        currentLeader = newLeader;
+        CurrentLeader = newLeader;
     }    
 }
