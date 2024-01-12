@@ -14,8 +14,8 @@ public class MemberData : ScriptableObject
 
     private void InitRandomStats()
     {
-        Velocity = UnityEngine.Random.Range(2f, 5f);
-        Agility = UnityEngine.Random.Range(2f, 5f);
-        Stamina = UnityEngine.Random.Range(2f, 5f);
+        Velocity = Random.Range(2f, 5f);
+        Agility = Random.Range(60f, 180f);
+        Stamina = Random.Range(2f, 5f);
     }
 }
