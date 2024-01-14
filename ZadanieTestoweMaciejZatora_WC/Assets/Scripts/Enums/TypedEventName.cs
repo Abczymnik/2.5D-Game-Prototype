@@ -1,5 +1,6 @@
 public enum TypedEventName
 {
     SetLeaderTarget,
-    ChangeLeader
+    ChangeLeader,
+    SetActiveTeam
 }
