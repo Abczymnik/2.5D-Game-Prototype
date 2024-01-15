@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Member : MonoBehaviour, ISelectable
 {
-    private MemberData memberStats;
+    [field: SerializeField] private MemberData memberStats;
     private bool isLeader;
 
     private Coroutine followLeader;
