@@ -10,10 +10,15 @@ public class MembersBarDisplay : MonoBehaviour
     [field: SerializeField] public Dictionary<MemberSlotUI, MemberSlot> SlotDictionary { get; private set; }
 
     private UnityAction<object> onSetActiveTeam;
+    private UnityAction<object> onUpdateMemberSlot;
 
     private void Awake()
     {
+        SlotDictionary = new Dictionary<MemberSlotUI, MemberSlot>();
         onSetActiveTeam += OnSetActiveTeam;
+        EventManager.StartListening(TypedEventName.SetActiveTeam, onSetActiveTeam);
+        onUpdateMemberSlot += OnUpdateMemberSlot;
+        EventManager.StartListening(TypedEventName.UpdateMemberSlot, onUpdateMemberSlot);
     }
 
     private void Start()
@@ -22,6 +27,7 @@ public class MembersBarDisplay : MonoBehaviour
         {
             MemberSlotsUI.AddRange(GetComponentsInChildren<MemberSlotUI>());
         }
+
         AssignSlotsUINumbers();
     }
 
@@ -33,22 +39,35 @@ public class MembersBarDisplay : MonoBehaviour
         }
     }
 
-    public void AssignSlotsUI(MembersBar barToDisplay)
+    private void AssignSlotsUI()
     {
-        //SlotDictionary.
+        for (int i = 0; i < MemberSlotsUI.Count; i++)
+        {
+            SlotDictionary.Add(MemberSlotsUI[i], MembersBar.MemberSlots[i]);
+            MemberSlotsUI[i].Init(MembersBar.MemberSlots[i]);
+        }
     }
 
-    public void UpdateSlotUI(MemberSlot slotToUpdate)
+    private void UpdateMemberSlot(MemberSlot slotToUpdate)
     {
         foreach (var slot in SlotDictionary)
         {
             if (slot.Value == slotToUpdate) slot.Key.UpdateMemberSlot(slotToUpdate);
+            return;
         }
+    }
+
+    private void OnUpdateMemberSlot(object slotToUpdateData)
+    {
+        MemberSlot slotToUpdate = (MemberSlot)slotToUpdateData;
+        UpdateMemberSlot(slotToUpdate);
     }
 
     private void OnSetActiveTeam(object teamMembersBarData)
     {
         MembersBar = (MembersBar)teamMembersBarData;
+        SlotDictionary.Clear();
+        AssignSlotsUI();
     }
 
 }

@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class MemberController : MonoBehaviour
 {
     private InputAction mouseInput;
+    private InputAction keyboardLeaderSelect;
     private InputAction leaderDeselect;
+
+    private UnityAction<object> onSetActiveTeam;
+
+    private MembersBar actualTeamSorted;
 
     private void Awake()
     {
         InputManager.SwitchActionMap(InputManager.inputActions.Gameplay);
-        mouseInput = InputManager.inputActions.Gameplay.Movement;
-        mouseInput.performed += MouseMovementInput;
-        leaderDeselect = InputManager.inputActions.Gameplay.Deselect;
-        leaderDeselect.performed += LeaderDeselect;
+        InputSetup();
     }
 
     private void MouseMovementInput(InputAction.CallbackContext obj)
@@ -44,6 +47,35 @@ public class MemberController : MonoBehaviour
     private void LeaderDeselect(InputAction.CallbackContext obj)
     {
         EventManager.TriggerEvent(UnityEventName.LeaderDeselect);
+    }
+
+    private void LeaderSelectByKey(InputAction.CallbackContext obj)
+    {
+        if(int.TryParse(obj.control.name, out int indexOfMember))
+        {
+            Member selectedSlot = actualTeamSorted.MemberSlots[indexOfMember-1].MemberInSlot;
+            if (selectedSlot is not null)
+            {
+                selectedSlot.TrySelectNewLeader();
+            }
+        }
+    }
+
+    private void OnSetActiveTeam(object teamMembersBarData)
+    {
+        actualTeamSorted = (MembersBar)teamMembersBarData;
+    }
+
+    private void InputSetup()
+    {
+        mouseInput = InputManager.inputActions.Gameplay.Movement;
+        mouseInput.performed += MouseMovementInput;
+        leaderDeselect = InputManager.inputActions.Gameplay.Deselect;
+        leaderDeselect.performed += LeaderDeselect;
+        keyboardLeaderSelect = InputManager.inputActions.Gameplay.SelectLeader;
+        keyboardLeaderSelect.performed += LeaderSelectByKey;
+        onSetActiveTeam += OnSetActiveTeam;
+        EventManager.StartListening(TypedEventName.SetActiveTeam, onSetActiveTeam);
     }
 
     private void OnDisable()

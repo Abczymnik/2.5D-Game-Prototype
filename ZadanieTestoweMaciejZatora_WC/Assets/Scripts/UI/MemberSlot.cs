@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class MemberSlot
 {
-    [field:SerializeField] public Member MemberInSlot { get; private set; }
+    private Member _memberInSlot;
+    public Member MemberInSlot
+    {
+        get { return _memberInSlot; }
+        set
+        {
+            _memberInSlot = value;
+            EventManager.TriggerEvent(TypedEventName.UpdateMemberSlot, this);
+        }
+    }
 
     public MemberSlot(Member member)
     {

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class MembersBar
 {
     [field: SerializeField] public List<MemberSlot> MemberSlots { get; private set; } = new List<MemberSlot>();

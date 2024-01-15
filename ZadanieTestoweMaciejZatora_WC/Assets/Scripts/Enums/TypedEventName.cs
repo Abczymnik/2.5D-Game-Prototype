@@ -2,5 +2,6 @@ public enum TypedEventName
 {
     SetLeaderTarget,
     ChangeLeader,
-    SetActiveTeam
+    SetActiveTeam,
+    UpdateMemberSlot
 }

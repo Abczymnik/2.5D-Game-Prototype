@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberSlot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8809923763626902862, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -379,6 +383,10 @@ PrefabInstance:
     - target: {fileID: 5913970493585565749, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
       propertyPath: m_Name
       value: MemberSlot (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809923763626902862, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_text
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -983,6 +991,7 @@ GameObject:
   - component: {fileID: 789348106}
   - component: {fileID: 789348105}
   - component: {fileID: 789348104}
+  - component: {fileID: 789348108}
   m_Layer: 5
   m_Name: MembersBar
   m_TagString: Untagged
@@ -1096,6 +1105,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789348102}
   m_CullTransparentMesh: 1
+--- !u!114 &789348108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789348102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f36f4eeb492cd41acf2a611df59a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MemberSlotsUI>k__BackingField: []
 --- !u!1001 &804589120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1188,6 +1210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberSlot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8809923763626902862, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1260,18 +1286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d940292c6d5a14cade2e148f96f417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MembersBar>k__BackingField:
-    <MemberSlots>k__BackingField:
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    - <MemberInSlot>k__BackingField: {fileID: 0}
-    <Size>k__BackingField: 9
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1486,10 @@ PrefabInstance:
     - target: {fileID: 5913970493585565749, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
       propertyPath: m_Name
       value: MemberSlot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809923763626902862, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_text
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1866,6 +1884,10 @@ PrefabInstance:
     - target: {fileID: 5913970493585565749, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
       propertyPath: m_Name
       value: MemberSlot (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809923763626902862, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_text
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2308,6 +2330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberSlot (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8809923763626902862, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_text
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2410,6 +2436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberSlot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8809923763626902862, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_text
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2508,9 +2538,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5824536462604841323, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824536462604841323, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824536462604841323, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824536462604841323, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5913970493585565749, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
       propertyPath: m_Name
       value: MemberSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809923763626902862, guid: d41ef39b58cbc764b90a7a24df5a732a, type: 3}
+      propertyPath: m_text
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
