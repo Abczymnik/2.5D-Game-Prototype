@@ -1,20 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class MembersBarDisplay : MonoBehaviour
 {
-    [field: SerializeField] public MembersBar MembersBar { get; private set; }
-    [field: SerializeField] public List<MemberSlotUI> MemberSlotsUI { get; private set; } = new List<MemberSlotUI>();
-    [field: SerializeField] public Dictionary<MemberSlotUI, MemberSlot> SlotDictionary { get; private set; }
+    private MembersBar membersBar;
+    private List<MemberSlotUI> memberSlotsUI = new List<MemberSlotUI>();
+    private Dictionary<MemberSlotUI, MemberSlot> slotDictionary;
 
     private UnityAction<object> onSetActiveTeam;
     private UnityAction<object> onUpdateMemberSlot;
 
     private void Awake()
     {
-        SlotDictionary = new Dictionary<MemberSlotUI, MemberSlot>();
+        slotDictionary = new Dictionary<MemberSlotUI, MemberSlot>();
         onSetActiveTeam += OnSetActiveTeam;
         EventManager.StartListening(TypedEventName.SetActiveTeam, onSetActiveTeam);
         onUpdateMemberSlot += OnUpdateMemberSlot;
@@ -23,9 +22,9 @@ public class MembersBarDisplay : MonoBehaviour
 
     private void Start()
     {
-        if (MemberSlotsUI.Count == 0)
+        if (memberSlotsUI.Count == 0)
         {
-            MemberSlotsUI.AddRange(GetComponentsInChildren<MemberSlotUI>());
+            memberSlotsUI.AddRange(GetComponentsInChildren<MemberSlotUI>());
         }
 
         AssignSlotsUINumbers();
@@ -33,24 +32,24 @@ public class MembersBarDisplay : MonoBehaviour
 
     private void AssignSlotsUINumbers()
     {
-        for (int i=0; i<MemberSlotsUI.Count; i++)
+        for (int i=0; i<memberSlotsUI.Count; i++)
         {
-            MemberSlotsUI[i].MemberNumber.text = (i+1).ToString();
+            memberSlotsUI[i].MemberNumber.text = (i+1).ToString();
         }
     }
 
     private void AssignSlotsUI()
     {
-        for (int i = 0; i < MemberSlotsUI.Count; i++)
+        for (int i = 0; i < memberSlotsUI.Count; i++)
         {
-            SlotDictionary.Add(MemberSlotsUI[i], MembersBar.MemberSlots[i]);
-            MemberSlotsUI[i].Init(MembersBar.MemberSlots[i]);
+            slotDictionary.Add(memberSlotsUI[i], membersBar.MemberSlots[i]);
+            memberSlotsUI[i].Init(membersBar.MemberSlots[i]);
         }
     }
 
     private void UpdateMemberSlot(MemberSlot slotToUpdate)
     {
-        foreach (var slot in SlotDictionary)
+        foreach (var slot in slotDictionary)
         {
             if (slot.Value == slotToUpdate) slot.Key.UpdateMemberSlot(slotToUpdate);
             return;
@@ -65,9 +64,8 @@ public class MembersBarDisplay : MonoBehaviour
 
     private void OnSetActiveTeam(object teamMembersBarData)
     {
-        MembersBar = (MembersBar)teamMembersBarData;
-        SlotDictionary.Clear();
+        membersBar = (MembersBar)teamMembersBarData;
+        slotDictionary.Clear();
         AssignSlotsUI();
     }
-
 }

@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MemberSlotUI : MonoBehaviour
 {
-    [field: SerializeField] public Image MemberSprite { get; private set; }
+    private Image memberSprite;
+    private MemberSlot memberSlot;
     [field: SerializeField] public TextMeshProUGUI MemberNumber { get; set; }
-    [field: SerializeField] public MemberSlot MemberSlot { get; private set; }
 
     private bool isLeaderSlot;
 
@@ -19,7 +16,7 @@ public class MemberSlotUI : MonoBehaviour
 
     private void Awake()
     {
-        if (MemberSprite is null) MemberSprite = GetComponentInChildren<Image>();
+        if (memberSprite is null) memberSprite = GetComponentInChildren<Image>();
         if (MemberNumber is null) MemberNumber = GetComponentInChildren<TextMeshProUGUI>();
 
         onLeaderDeselect += OnLeaderDeselect;
@@ -31,7 +28,7 @@ public class MemberSlotUI : MonoBehaviour
 
     public void Init(MemberSlot slot)
     {
-        MemberSlot = slot;
+        memberSlot = slot;
         UpdateMemberSlot(slot);
     }
 
@@ -39,7 +36,7 @@ public class MemberSlotUI : MonoBehaviour
     {
         if (slot.MemberInSlot is not null)
         {
-            MemberSprite.color = new Color32(0, 255, 0, 150);
+            memberSprite.color = new Color32(0, 255, 0, 150);
         }
 
         else ClearSlot();
@@ -47,13 +44,13 @@ public class MemberSlotUI : MonoBehaviour
 
     public void UpdateMemberSlot()
     {
-        if (MemberSlot is not null) UpdateMemberSlot(MemberSlot);
+        if (memberSlot is not null) UpdateMemberSlot(memberSlot);
     }
 
     public void ClearSlot()
     {
-        if (MemberSlot is not null) MemberSlot.ClearSlot();
-        MemberSprite.color = Color.clear;
+        if (memberSlot is not null) memberSlot.ClearSlot();
+        memberSprite.color = Color.clear;
     }
 
     private void OnLeaderDeselect()
@@ -61,7 +58,7 @@ public class MemberSlotUI : MonoBehaviour
         if (isLeaderSlot)
         {
             isLeaderSlot = false;
-            MemberSprite.color = new Color32(0,255,0,150);
+            memberSprite.color = new Color32(0,255,0,150);
             EventManager.StopListening(UnityEventName.LeaderDeselect, onLeaderDeselect);
         }
     }
@@ -71,10 +68,10 @@ public class MemberSlotUI : MonoBehaviour
         if (newLeaderData is null) return;
 
         Member leader = (Member)newLeaderData;
-        if (leader == MemberSlot.MemberInSlot)
+        if (leader == memberSlot.MemberInSlot)
         {
             isLeaderSlot = true;
-            MemberSprite.color = new Color32(255, 215, 0, 150);
+            memberSprite.color = new Color32(255, 215, 0, 150);
             EventManager.StartListening(UnityEventName.LeaderDeselect, onLeaderDeselect);
         }
     }

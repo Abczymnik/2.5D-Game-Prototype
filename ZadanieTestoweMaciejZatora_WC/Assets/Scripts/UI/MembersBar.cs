@@ -1,15 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MembersBar
 {
     [field: SerializeField] public List<MemberSlot> MemberSlots { get; private set; } = new List<MemberSlot>();
-    [field: SerializeField] public int Size { get; private set; } = 9;
+    private int size = 9;
 
     public MembersBar()
     {
-        for(int i=0; i<Size; i++)
+        for(int i=0; i<size; i++)
         {
             MemberSlots.Add(new MemberSlot());
         }
@@ -23,7 +22,7 @@ public class MembersBar
             MemberSlots.Add(new MemberSlot(teamToDisplay.TeamMembers[i]));
         }
 
-        for (int i=teamMembersCount; i<Size; i++)
+        for (int i=teamMembersCount; i<size; i++)
         {
             MemberSlots.Add(new MemberSlot());
         }
@@ -39,7 +38,7 @@ public class MembersBar
 
     public void RemoveMember(Member memberToRemove)
     {
-        for(int i=0; i<Size; i++)
+        for(int i=0; i<size; i++)
         {
             if(MemberSlots[i].MemberInSlot == memberToRemove)
             {
@@ -51,7 +50,7 @@ public class MembersBar
 
     private int FirstFreeSlot()
     {
-        for(int i=0; i<Size; i++)
+        for(int i=0; i<size; i++)
         {
             if (MemberSlots[i].MemberInSlot is null) return i;
         }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,5 +35,4 @@ public class LeaderCameraFollower : MonoBehaviour
         Member leader = (Member)newLeaderData;
         leaderToFollow = leader.transform;
     }
-
 }

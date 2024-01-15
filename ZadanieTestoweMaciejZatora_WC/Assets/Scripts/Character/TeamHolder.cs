@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TeamHolder : MonoBehaviour
 {
-    [field: SerializeField] public MembersBar MembersBar { get; private set; }
+    private MembersBar membersBar;
 
     private Team _activeTeam;
     public Team ActiveTeam
@@ -13,8 +11,8 @@ public class TeamHolder : MonoBehaviour
         set
         {
             _activeTeam = value;
-            MembersBar = new MembersBar(_activeTeam);
-            EventManager.TriggerEvent(TypedEventName.SetActiveTeam, MembersBar);
+            membersBar = new MembersBar(_activeTeam);
+            EventManager.TriggerEvent(TypedEventName.SetActiveTeam, membersBar);
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class Team
 {
     [field: SerializeField] public List<Member> TeamMembers { get; private set; } = new List<Member>();
-    [field: SerializeField] public Member CurrentLeader { get; private set; }
+    private Member currentLeader;
 
     private UnityAction<object> onChangeLeader;
 
@@ -30,10 +30,10 @@ public class Team
     {
         if (memberToDelete is null) return;
 
-        if (memberToDelete == CurrentLeader)
+        if (memberToDelete == currentLeader)
         {
             EventManager.TriggerEvent(UnityEventName.LeaderDeselect);
-            CurrentLeader = null;
+            currentLeader = null;
         }
 
         if (TeamMembers.Contains(memberToDelete)) TeamMembers.Remove(memberToDelete);
@@ -51,6 +51,6 @@ public class Team
     private void OnChangeLeader(object newLeaderData)
     {
         Member newLeader = (Member)newLeaderData;
-        CurrentLeader = newLeader;
+        currentLeader = newLeader;
     }    
 }

@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class Member : MonoBehaviour, ISelectable
 {
-    [field:SerializeField] public MemberData MemberStats { get; private set; }
-    [field:SerializeField] public bool IsLeader { get; private set; }
+    private MemberData memberStats;
+    private bool isLeader;
 
     private Coroutine followLeader;
     private Coroutine checkIfLeaderReachedDestination;
@@ -22,14 +22,14 @@ public class Member : MonoBehaviour, ISelectable
     private void Awake()
     {
         if (agent == null) agent = GetComponent<NavMeshAgent>();
-        agent.speed = MemberStats.Velocity;
-        agent.angularSpeed = MemberStats.Agility;
+        agent.speed = memberStats.Velocity;
+        agent.angularSpeed = memberStats.Agility;
         SetupInitEvents();
     }
 
     public bool TrySelectNewLeader()
     {
-        if (IsLeader) return false;
+        if (isLeader) return false;
 
         EventManager.TriggerEvent(UnityEventName.LeaderDeselect);
         EventManager.TriggerEvent(TypedEventName.ChangeLeader, this);
@@ -38,7 +38,7 @@ public class Member : MonoBehaviour, ISelectable
 
     private void OnLeaderDeselect()
     {
-        IsLeader = false;
+        isLeader = false;
         EventManager.StopListening(UnityEventName.LeaderDeselect, onLeaderDeselect);
         EventManager.StopListening(UnityEventName.LeaderDestinationComplete, onLeaderDestinationComplete);
         EventManager.TriggerEvent(TypedEventName.ChangeLeader, null);
@@ -48,7 +48,7 @@ public class Member : MonoBehaviour, ISelectable
     {
         Vector3 targetPosition = (Vector3)targetPositionData;
 
-        if (IsLeader)
+        if (isLeader)
         {
             agent.SetDestination(targetPosition);
             if (checkIfLeaderReachedDestination is not null) StopCoroutine(checkIfLeaderReachedDestination);
@@ -69,7 +69,7 @@ public class Member : MonoBehaviour, ISelectable
         Member leader = (Member)newLeaderData;
         if(leader == this)
         {
-            IsLeader = true;
+            isLeader = true;
             leaderToFollow = null;
             EventManager.StartListening(UnityEventName.LeaderDeselect, onLeaderDeselect);
             EventManager.StartListening(UnityEventName.LeaderDestinationComplete, onLeaderDestinationComplete);
@@ -97,7 +97,7 @@ public class Member : MonoBehaviour, ISelectable
 
     private void OnLeaderDestinationComplete()
     {
-        if (!IsLeader)
+        if (!isLeader)
         {
             if (followLeader is not null) StopCoroutine(followLeader);
             followLeader = null;
